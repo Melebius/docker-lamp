@@ -4,8 +4,6 @@ services:
   webserver:
     build:
       context: ./bin/webserver
-    container_name: "dev-7.4-webserver"
-    restart: "always"
     ports:
       - "80:80"
       - "443:443"
@@ -21,9 +19,7 @@ services:
       - ${APACHE_LOG_DIR}:/var/log/apache2
   mysql:
     build: ./bin/mysql
-    container_name: "dev-8.0-mysql"
     command: --lower_case_table_names=1 --default-authentication-plugin=mysql_native_password
-    restart: "always"
     ports:
       - "3306:3306"
     networks:
@@ -37,8 +33,6 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
   mailhog:
     image: mailhog/mailhog:latest
-    container_name: "dev-mail-mailhog"
-    restart: "always"
     ports:
       - "1025:1025"
       - "8025:8025"
